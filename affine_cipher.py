@@ -6,25 +6,25 @@ class Affine(Cipher):
     alphabet_size = len(plaintext)
     COPRIMES = (1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25)
 
-    def __init__(self, var_a=5, var_b=8):
-        if var_a not in self.COPRIMES:
+    def __init__(self, key_a=5, key_b=8):
+        if key_a not in self.COPRIMES:
             raise ValueError("Key a must be one of the following values: {}".format(self.COPRIMES))
-        if var_a == 1 and var_b % self.alphabet_size == 0:
+        if key_a == 1 and key_b % self.alphabet_size == 0:
             raise ValueError("Key b cannot be a multiple of {} when key a equals 1".format(self.alphabet_size))
-        self.var_a = var_a
-        self.key_b = var_b
-        self.inverse_var_a = self.calculate_inverse_var_a()
+        self.key_a = key_a
+        self.key_b = key_b
+        self.inverse_key_a = self.calculate_inverse_key_a()
 
-    def calculate_inverse_var_a(self):
+    def calculate_inverse_key_a(self):
         for index in range(self.alphabet_size):
-            if (self.var_a * index) % self.alphabet_size == 1:
+            if (self.key_a * index) % self.alphabet_size == 1:
                 return index
 
     def encryption_function(self, index):
-        return ((self.var_a * index) + self.key_b) % self.alphabet_size
+        return ((self.key_a * index) + self.key_b) % self.alphabet_size
 
     def decryption_function(self, index):
-        return (self.inverse_var_a * (index - self.key_b)) % self.alphabet_size
+        return (self.inverse_key_a * (index - self.key_b)) % self.alphabet_size
 
     def encrypt(self, message):
         message = message.upper()

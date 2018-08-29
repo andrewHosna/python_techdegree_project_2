@@ -5,10 +5,10 @@ class Caesar(Cipher):
     plaintext = Cipher.ALPHABET
     alphabet_size = len(plaintext)
 
-    def __init__(self, offset=3):
-        if offset == 0:
+    def __init__(self, key=3):
+        if key == 0:
             raise ValueError("Message will not be encrypted when the offset is 0")
-        self.offset = offset
+        self.key = key
 
     def encrypt(self, message):
         message = message.upper()
@@ -19,7 +19,7 @@ class Caesar(Cipher):
             except ValueError:
                 encrypted_message += char
             else:
-                encrypted_message += self.plaintext[(index + self.offset) % self.alphabet_size]
+                encrypted_message += self.plaintext[(index + self.key) % self.alphabet_size]
         return encrypted_message
 
     def decrypt(self, encrypted_message):
@@ -31,5 +31,5 @@ class Caesar(Cipher):
             except ValueError:
                 decrypted_message += char
             else:
-                decrypted_message += self.plaintext[(index - self.offset) % self.alphabet_size]
+                decrypted_message += self.plaintext[(index - self.key) % self.alphabet_size]
         return decrypted_message
