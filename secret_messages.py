@@ -6,6 +6,7 @@ from polybius_square_cipher import PolybiusSquare
 
 
 def get_cipher():
+    """Ask user to select an available cipher and return the input in lowercase."""
     return input("""
 Available ciphers:
  
@@ -20,12 +21,14 @@ Select a cipher...
 
 
 def get_message():
+    """Ask user for a message and return the input."""
     return input("""
-Enter a message...    
+Enter a message...
 -> """)
 
 
 def get_option():
+    """Ask user to select an option and return the input in lowercase."""
     return input("""
 Options:
  
@@ -37,6 +40,16 @@ Select an option...
 
 
 def affine_controller():
+    """Use the affine cipher.
+
+    Get a message and an option from the user.
+    Enter a while loop.
+    Ask user for keys a and b until integer values are provided.
+    Try to create an instance of Affine() with keys a and b until valid values of keys a and b are provided.
+    If the option is '1' or 'encrypt' then print the encrypted message.
+    If the option is '2' or 'decrypt' then print the decrypted message.
+    Break out of loop.
+    """
     message = get_message()
     option = get_option()
 
@@ -62,6 +75,13 @@ def affine_controller():
 
 
 def atbash_controller():
+    """Use the atbash cipher.
+
+    Get a message and an option from the user.
+    Create an instance of Atbash().
+    If the option is '1' or 'encrypt' then print the encrypted message.
+    If the option is '2' or 'decrypt' then print the decrypted message.
+    """
     message = get_message()
     option = get_option()
 
@@ -73,6 +93,16 @@ def atbash_controller():
 
 
 def caesar_controller():
+    """Use the caesar cipher.
+
+    Get a message and an option from the user.
+    Enter a while loop.
+    Ask user for shift until an integer value is provided.
+    Try to create an instance of Caesar() with shift until a valid value of shift is provided.
+    If the option is '1' or 'encrypt' then print the encrypted message.
+    If the option is '2' or 'decrypt' then print the decrypted message.
+    Break out of loop.
+    """
     message = get_message()
     option = get_option()
 
@@ -96,13 +126,23 @@ def caesar_controller():
 
 
 def keyword_controller():
+    """Use the keyword cipher.
+
+    Get a message and an option from the user.
+    Enter a while loop.
+    Ask user for a keyword.
+    Try to create an instance of Keyword() with key_word until a valid keyword is provided.
+    If the option is '1' or 'encrypt' then print the encrypted message.
+    If the option is '2' or 'decrypt' then print the decrypted message.
+    Break out of loop.
+    """
     message = get_message()
     option = get_option()
 
     while True:
-        key = input("Enter a keyword...\n-> ")
+        key_word = input("Enter a keyword...\n-> ")
         try:
-            keyword = Keyword(key_word=key)
+            keyword = Keyword(key_word=key_word)
         except ValueError as error:
             print(error)
         else:
@@ -114,15 +154,25 @@ def keyword_controller():
 
 
 def polybius_square_controller():
+    """Use the polybius square cipher.
+
+    Get a message and an option from the user.
+    Enter a while loop.
+    Ask user for a keyword.
+    Try to create an instance of PolybiusSquare() with key_word until a valid keyword is provided.
+    If the option is '1' or 'encrypt' then print the encrypted message.
+    If the option is '2' or 'decrypt' then print the decrypted message.
+    Break out of loop.
+    """
     message = get_message()
     option = get_option()
 
     while True:
-        key = ""
+        key_word = ""
         if input("Use keyword?... (yes/no)\n-> ") == "yes":
-            key = input("Enter a keyword...\n-> ")
+            key_word = input("Enter a keyword...\n-> ")
         try:
-            polybius_square = PolybiusSquare(key_word=key)
+            polybius_square = PolybiusSquare(key_word=key_word)
         except ValueError as error:
             print(error)
         else:
