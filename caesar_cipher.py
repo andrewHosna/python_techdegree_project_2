@@ -9,7 +9,7 @@ class Caesar(Cipher):
 
     def __init__(self, key=3):
         if key == 0:
-            raise ValueError("Message will not be encrypted when the offset is 0")
+            raise ValueError("Message will not be encrypted when the shift is 0")
         self.key = key
 
     def encrypt(self, message):
