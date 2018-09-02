@@ -1,9 +1,4 @@
-import string
-
-
 class Cipher:
-    ALPHABET = string.ascii_uppercase
-
     def encrypt(self, message):
         raise NotImplementedError()
 
