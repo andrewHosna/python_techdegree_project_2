@@ -1,8 +1,10 @@
+import string
+
 from ciphers import Cipher
 
 
 class Keyword(Cipher):
-    plaintext = Cipher.ALPHABET
+    plaintext = string.ascii_uppercase
 
     def __init__(self, key_word=""):
         if self.is_plaintext_letter(key_word):

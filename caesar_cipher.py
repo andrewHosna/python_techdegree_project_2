@@ -1,8 +1,10 @@
+import string
+
 from ciphers import Cipher
 
 
 class Caesar(Cipher):
-    plaintext = Cipher.ALPHABET
+    plaintext = string.ascii_uppercase
     alphabet_size = len(plaintext)
 
     def __init__(self, key=3):
